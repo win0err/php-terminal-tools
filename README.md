@@ -1,7 +1,7 @@
 # PHP Terminal Tools
 
-![Travis-CI](https://img.shields.io/travis/win0err/php-terminal-tools.svg?style=flat-square)
-![Latest Stable Version](https://img.shields.io/packagist/v/win0err/php-terminal-tools.svg?style=flat-square)
+[![Travis](https://img.shields.io/travis/win0err/php-terminal-tools.svg?style=flat-square)](https://travis-ci.org/win0err/php-terminal-tools)
+[![Latest Stable Version](https://img.shields.io/packagist/v/win0err/php-terminal-tools.svg?style=flat-square)](https://packagist.org/packages/win0err/php-terminal-tools)
 
 PHP Terminal Tools облегчают работу с терминалом в проектах, написанных на языке PHP.
 
@@ -70,6 +70,7 @@ $textFormatter
 
 ## Пример
 ![PHP Terminal Tools](https://cloud.githubusercontent.com/assets/11278181/25024433/9bde3492-20a6-11e7-8994-0e7e83f79dae.png)
+### Исходный код примера
 ```PHP
 <?php
 require 'vendor/autoload.php';
