@@ -50,7 +50,7 @@ class TextFormatter {
 	/**
 	 * @param string $text
 	 *
-	 * @return $this
+	 * @return TextFormatter
 	 */
 	public function setText(string $text): TextFormatter {
 
@@ -59,18 +59,22 @@ class TextFormatter {
 		return $this;
 	}
 
+
 	/**
-	 * @param int $style Bold, faint, underline, blink, reverse or hidden
+	 * @param \int[] ...$styles Bold, faint, underline, blink, reverse or hidden
 	 *
-	 * @return $this
+	 * @return TextFormatter
 	 * @throws UndefinedStyleException
 	 */
-	public function addStyle(int $style = 0): TextFormatter {
+	public function setStyles(int ...$styles): TextFormatter {
 
-		if (!in_array( $style, [1, 2, 4, 5, 7, 8] ))
-			throw new UndefinedStyleException;
+		foreach( (array)$styles as $style ) {
 
-		array_push( $this->styles, $style );
+			if (!in_array( $style, [1, 2, 4, 5, 7, 8] ))
+				throw new UndefinedStyleException;
+
+			array_push( $this->styles, $style );
+		}
 
 		return $this;
 	}
@@ -78,7 +82,7 @@ class TextFormatter {
 	/**
 	 * @param Color $color
 	 *
-	 * @return $this
+	 * @return TextFormatter
 	 */
 	public function setTextColor(Color $color): TextFormatter {
 
@@ -90,7 +94,7 @@ class TextFormatter {
 	/**
 	 * @param Color $color
 	 *
-	 * @return $this
+	 * @return TextFormatter
 	 */
 	public function setBackgroundColor(Color $color): TextFormatter {
 
@@ -111,6 +115,34 @@ class TextFormatter {
 		sort( $codes );
 
 		return "\e[" . implode( ";", $codes ) . "m" . $this->text . "\e[0m";
+	}
+
+
+	/**
+	 * @param string     $text
+	 * @param Color|null $textColor
+	 * @param Color|null $backgroundColor
+	 * @param \int[]     ...$styles
+	 *
+	 * @return TextFormatter
+	 */
+	public static function format(string $text, Color $textColor = null, Color $backgroundColor = null, int ...$styles): TextFormatter {
+
+		$textFormatter = new self();
+
+		$textFormatter->setText( $text );
+
+		if (!is_null( $textColor ))
+			$textFormatter->setTextColor( $textColor );
+
+		if (!is_null( $backgroundColor ))
+			$textFormatter->setBackgroundColor( $backgroundColor );
+
+		foreach( (array)$styles as $style )
+			$textFormatter->setStyles( $style );
+
+		return $textFormatter;
+
 	}
 
 
