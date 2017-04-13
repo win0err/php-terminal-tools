@@ -48,12 +48,12 @@ class Extended implements Color {
 
 	public function getTextColor(): string {
 
-		return $this->colorCode === -1 ? "" : "38;5;" . $this->colorCode;
+		return $this->colorCode === -1 ? "" : sprintf("38;5;%s", $this->colorCode);
 	}
 
 	public function getBackgroundColor(): string {
 
-		return $this->colorCode === -1 ? "" : "48;5;" . $this->colorCode;
+		return $this->colorCode === -1 ? "" : sprintf("48;5;%s", $this->colorCode);
 	}
 
 

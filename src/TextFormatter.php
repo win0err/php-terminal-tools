@@ -114,7 +114,7 @@ class TextFormatter {
 
 		sort( $codes );
 
-		return "\e[" . implode( ";", $codes ) . "m" . $this->text . "\e[0m";
+		return sprintf("\e[%sm%s\e[0m", implode( ";", $codes ), $this->text);
 	}
 
 
