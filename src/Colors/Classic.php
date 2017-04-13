@@ -1,0 +1,51 @@
+<?php declare(strict_types=1);
+
+namespace win0err\TerminalTools\Colors;
+
+
+use win0err\TerminalTools\Exceptions\UndefinedColorException;
+
+class Classic implements Color {
+
+	private $colorCode = 39;
+
+	const DEFAULT = 39;
+
+	const BLACK   = 30;
+	const RED     = 31;
+	const GREEN   = 32;
+	const YELLOW  = 33;
+	const BLUE    = 34;
+	const MAGENTA = 35;
+	const CYAN    = 36;
+	const GRAY    = 37;
+
+	const DARK_GRAY     = 90;
+	const LIGHT_RED     = 91;
+	const LIGHT_GREEN   = 92;
+	const LIGHT_YELLOW  = 93;
+	const LIGHT_BLUE    = 94;
+	const LIGHT_MAGENTA = 95;
+	const LIGHT_CYAN    = 96;
+	const WHITE         = 97;
+
+	public function __construct(int $code) {
+
+		if (($code < 30 || $code > 37) && ($code < 90 || $code > 97) && $code !== 39)
+			throw new UndefinedColorException();
+
+		$this->colorCode = $code;
+
+		return $this;
+	}
+
+	public function getTextColor(): string {
+
+		return (string)$this->colorCode;
+	}
+
+	public function getBackgroundColor(): string {
+
+		return (string)($this->colorCode + 10);
+	}
+}

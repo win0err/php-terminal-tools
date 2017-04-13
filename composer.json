@@ -1,0 +1,26 @@
+{
+  "name": "win0err/php-terminal-tools",
+  "description": "PHP Terminal Tools",
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Sergei Kolesnikov",
+      "email": "win0err@gmail.com"
+    }
+  ],
+  "require-dev": {
+    "phpunit/phpunit": "^6.1"
+  },
+  "autoload": {
+    "psr-4": {
+      "win0err\\TerminalTools\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "win0err\\TerminalTools\\Tests\\": "tests/"
+    }
+  }
+}
