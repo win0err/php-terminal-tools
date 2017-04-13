@@ -27,6 +27,16 @@
     <filter>
         <blacklist>
             <directory suffix=".php">./vendor</directory>
+            <directory>./tests/report</directory>
         </blacklist>
+        <whitelist>
+            <directory>./src</directory>
+        </whitelist>
     </filter>
+
+    <logging>
+        <log type="coverage-html" target="./tests/report" charset="UTF-8"
+             yui="true" highlight="true"
+             lowUpperBound="50" highLowerBound="80"/>
+    </logging>
 </phpunit>
