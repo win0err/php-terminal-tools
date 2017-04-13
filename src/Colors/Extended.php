@@ -1,10 +1,22 @@
 <?php declare(strict_types=1);
+/**
+ * PHP Terminal Tools
+ *
+ * @package   win0err\TerminalTools
+ * @author    Sergei Kolesnikov <win0err@gmail.com>
+ * @license   MIT
+ * @link      https://iamawesomeguy.ru/
+ * @copyright 2017 Sergei Kolesnikov
+ */
 
 namespace win0err\TerminalTools\Colors;
 
 
 use win0err\TerminalTools\Exceptions\UndefinedColorException;
 
+/**
+ * Class Extended
+ */
 class Extended implements Color {
 
 	private $colorCode = -1;
@@ -32,8 +44,6 @@ class Extended implements Color {
 			throw new UndefinedColorException();
 
 		$this->colorCode = $code;
-
-		return $this;
 	}
 
 	public function getTextColor(): string {
@@ -43,7 +53,7 @@ class Extended implements Color {
 
 	public function getBackgroundColor(): string {
 
-		return  $this->colorCode === -1 ? "" : "48;5;" . $this->colorCode;
+		return $this->colorCode === -1 ? "" : "48;5;" . $this->colorCode;
 	}
 
 

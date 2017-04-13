@@ -1,4 +1,4 @@
-<?php declare(strict_types=1);
+<?php
 /**
  * PHP Terminal Tools
  *
@@ -9,6 +9,11 @@
  * @copyright 2017 Sergei Kolesnikov
  */
 
-namespace win0err\TerminalTools\Exceptions;
+namespace win0err\TerminalTools\Tests;
 
-class UndefinedStyleException extends \Exception { }
+use win0err\TerminalTools\TextFormatter;
+use PHPUnit\Framework\TestCase;
+
+class TextFormatterTest extends TestCase {
+
+}

@@ -4,6 +4,7 @@
   "minimum-stability": "dev",
   "prefer-stable": true,
   "license": "MIT",
+  "version": "1.0.0",
   "authors": [
     {
       "name": "Sergei Kolesnikov",
