@@ -68,7 +68,7 @@ $textFormatter
     ->setBackgroundColor( new Extended( rand(0, 255) ) );
 ```
 
-#### Пример
+## Пример
 ![PHP Terminal Tools](https://cloud.githubusercontent.com/assets/11278181/25024433/9bde3492-20a6-11e7-8994-0e7e83f79dae.png)
 ```PHP
 <?php
