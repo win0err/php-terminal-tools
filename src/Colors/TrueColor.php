@@ -189,7 +189,7 @@ class TrueColor implements Color {
 	public static function hex(string $hex = "#000000"): Color {
 
 		$hex = str_replace( '#', '', $hex );
-		
+
 		if (strlen( $hex ) === 6) { // #000000
 
 			$r = hexdec( $hex[0] . $hex[1] );
