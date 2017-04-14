@@ -42,7 +42,7 @@ class TextFormatterTest extends TestCase {
 	public function testEmptyString() {
 
 		$this->assertEquals(
-			"\e[39;49m\e[0m",
+			"\e[0m",
 			(string)(new TextFormatter())
 		);
 	}
@@ -50,12 +50,12 @@ class TextFormatterTest extends TestCase {
 	function stylesProvider() {
 
 		return [
-			[1, "\e[1;39;49m\e[0m"],
-			[2, "\e[2;39;49m\e[0m"],
-			[4, "\e[4;39;49m\e[0m"],
-			[5, "\e[5;39;49m\e[0m"],
-			[7, "\e[7;39;49m\e[0m"],
-			[8, "\e[8;39;49m\e[0m"]
+			[1, "\e[1m\e[0m"],
+			[2, "\e[2m\e[0m"],
+			[4, "\e[4m\e[0m"],
+			[5, "\e[5m\e[0m"],
+			[7, "\e[7m\e[0m"],
+			[8, "\e[8m\e[0m"]
 		];
 	}
 
@@ -83,7 +83,7 @@ class TextFormatterTest extends TestCase {
 			->setStyles( 1, 7, 4, 5 );
 
 		$this->assertEquals(
-			"\e[1;4;5;7;39;49m\e[0m",
+			"\e[1;4;5;7m\e[0m",
 			(string)$textFormatter
 		);
 	}
@@ -91,7 +91,7 @@ class TextFormatterTest extends TestCase {
 	public function testMultipleStylesWithStaticFormatMethod() {
 
 		$this->assertEquals(
-			"\e[1;4;5;7;39;49m\e[0m",
+			"\e[1;4;5;7m\e[0m",
 			(string)TextFormatter::format( "", null, null, 1, 4, 5, 7 )
 		);
 	}
@@ -110,7 +110,7 @@ class TextFormatterTest extends TestCase {
 		$textFormatter->setText( "I love testing" );
 
 		$this->assertEquals(
-			"\e[39;49mI love testing\e[0m",
+			"I love testing\e[0m",
 			(string)$textFormatter
 		);
 	}
@@ -127,7 +127,7 @@ class TextFormatterTest extends TestCase {
 			->will( $this->returnValue( '36' ) );
 
 		$this->assertEquals(
-			"\e[36;49m\e[0m",
+			"\e[36m\e[0m",
 			(string)(new TextFormatter())->setTextColor($color)
 		);
 	}
@@ -144,7 +144,7 @@ class TextFormatterTest extends TestCase {
 			->will( $this->returnValue( '96' ) );
 
 		$this->assertEquals(
-			"\e[39;96m\e[0m",
+			"\e[96m\e[0m",
 			(string)(new TextFormatter())->setBackgroundColor($color)
 		);
 	}
@@ -162,8 +162,28 @@ class TextFormatterTest extends TestCase {
 			->will( $this->returnValue( '96' ) );
 
 		$this->assertEquals(
-			"\e[39;96m\e[0m",
-			(string)(new TextFormatter())->setBackgroundColor($color)
+			"\e[96m\e[0m",
+			(string)(new TextFormatter())->setBackgroundColor($color)->setBackgroundColor($color)
+		);
+	}
+
+	public function testStandartColors() {
+
+		$color = $this->getMockBuilder( 'win0err\TerminalTools\Colors\Classic' )
+			->setMethods( ['getTextColor', 'getBackgroundColor'] )
+			->disableOriginalConstructor()
+			->getMock();
+
+		$color->expects( $this->any() )
+			->method( 'getTextColor' )
+			->will( $this->returnValue( '39' ) );
+		$color->expects( $this->any() )
+			->method( 'getBackgroundColor' )
+			->will( $this->returnValue( '49' ) );
+
+		$this->assertEquals(
+			"\e[0m",
+			(string)(new TextFormatter())->setTextColor($color)->setBackgroundColor($color)
 		);
 	}
 
@@ -179,7 +199,7 @@ class TextFormatterTest extends TestCase {
 			->will( $this->returnValue( '96' ) );
 
 		$this->assertEquals(
-			"\e[39;96m\e[0m",
+			"\e[96m\e[0m",
 			(string)TextFormatter::format( "", null, $color)
 		);
 	}

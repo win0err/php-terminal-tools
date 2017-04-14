@@ -25,8 +25,8 @@ class TextFormatter {
 	protected $text = "";
 
 	private $styles          = [];
-	private $textColor       = 39;
-	private $backgroundColor = 49;
+	private $textColor       = '39';
+	private $backgroundColor = '49';
 
 	const BOLD      = 1;
 	const FAINT     = 2;
@@ -109,12 +109,20 @@ class TextFormatter {
 	function __toString(): string {
 
 		$codes = $this->styles;
-		array_push( $codes, $this->textColor );
-		array_push( $codes, $this->backgroundColor );
-
 		sort( $codes );
 
-		return sprintf("\e[%sm%s\e[0m", implode( ";", $codes ), $this->text);
+		$modes = "";
+
+		if(!empty($codes))
+			$modes .= sprintf("\e[%sm", implode( ";", $codes ));
+
+		if($this->textColor !== '39')
+			$modes .= sprintf("\e[%sm", $this->textColor);
+
+		if($this->backgroundColor !== '49')
+			$modes .= sprintf("\e[%sm", $this->backgroundColor);
+
+		return sprintf("%s%s\e[0m", $modes, $this->text);
 	}
 
 
