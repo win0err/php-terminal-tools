@@ -15,7 +15,7 @@ namespace win0err\TerminalTools\Colors;
 use win0err\TerminalTools\Exceptions\UndefinedColorException;
 
 /**
- * Class Extended
+ * Class TrueColor
  */
 class TrueColor implements Color {
 
