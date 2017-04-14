@@ -38,6 +38,13 @@ class Extended implements Color {
 	const AQUA    = 14;
 	const WHITE   = 15;
 
+	/**
+	 * Extended constructor.
+	 *
+	 * @param int $code
+	 *
+	 * @throws UndefinedColorException
+	 */
 	public function __construct(int $code) {
 
 		if ($code < 0 || $code > 255)
@@ -46,11 +53,17 @@ class Extended implements Color {
 		$this->colorCode = $code;
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getTextColor(): string {
 
 		return $this->colorCode === -1 ? "" : sprintf("38;5;%s", $this->colorCode);
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getBackgroundColor(): string {
 
 		return $this->colorCode === -1 ? "" : sprintf("48;5;%s", $this->colorCode);

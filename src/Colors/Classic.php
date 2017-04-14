@@ -41,6 +41,13 @@ class Classic implements Color {
 	const LIGHT_CYAN    = 96;
 	const WHITE         = 97;
 
+	/**
+	 * Classic constructor.
+	 *
+	 * @param int $code
+	 *
+	 * @throws UndefinedColorException
+	 */
 	public function __construct(int $code) {
 
 		if (($code < 30 || $code > 37) && ($code < 90 || $code > 97) && $code !== 39)
@@ -49,11 +56,17 @@ class Classic implements Color {
 		$this->colorCode = $code;
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getTextColor(): string {
 
 		return (string)$this->colorCode;
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getBackgroundColor(): string {
 
 		return (string)($this->colorCode + 10);

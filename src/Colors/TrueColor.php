@@ -1,15 +1,4 @@
-<?php
-/**
- * PHP Terminal Tools
- *
- * @package   win0err\TerminalTools
- * @author    Sergei Kolesnikov <win0err@gmail.com>
- * @license   MIT
- * @link      https://iamawesomeguy.ru/
- * @copyright 2017 Sergei Kolesnikov
- */
-
-declare(strict_types=1);
+<?php declare(strict_types=1);
 /**
  * PHP Terminal Tools
  *
@@ -176,16 +165,31 @@ class TrueColor implements Color {
 	const WHITE                  = '#FFFFFF';
 	const REBECCA_PURPLE         = '#663399';
 
-	public function __construct(int $r, int $g, int $b) {
+	/**
+	 * TrueColor constructor.
+	 *
+	 * @param int $red
+	 * @param int $green
+	 * @param int $blue
+	 *
+	 * @throws UndefinedColorException
+	 */
+	public function __construct(int $red, int $green, int $blue) {
 
-		if ($r < 0 || $r > 255 || $g < 0 || $g > 255 || $b < 0 || $b > 255)
+		if ($red < 0 || $red > 255 || $green < 0 || $green > 255 || $blue < 0 || $blue > 255)
 			throw new UndefinedColorException();
 
-		$this->red = $r;
-		$this->green = $g;
-		$this->blue = $b;
+		$this->red = $red;
+		$this->green = $green;
+		$this->blue = $blue;
 	}
 
+	/**
+	 * @param string $hex
+	 *
+	 * @return Color
+	 * @throws UndefinedColorException
+	 */
 	public static function hex(string $hex = "#000000"): Color {
 
 		$hex = str_replace( '#', '', $hex );
@@ -206,11 +210,17 @@ class TrueColor implements Color {
 		return new self( (int)$r, (int)$g, (int)$b );
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getTextColor(): string {
 
 		return sprintf( "38;2;%s;%s;%s", $this->red, $this->green, $this->blue );
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getBackgroundColor(): string {
 
 		return sprintf( "48;2;%s;%s;%s", $this->red, $this->green, $this->blue );

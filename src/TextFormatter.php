@@ -113,16 +113,16 @@ class TextFormatter {
 
 		$modes = "";
 
-		if(!empty($codes))
-			$modes .= sprintf("\e[%sm", implode( ";", $codes ));
+		if (!empty( $codes ))
+			$modes .= sprintf( "\e[%sm", implode( ";", $codes ) );
 
-		if($this->textColor !== '39')
-			$modes .= sprintf("\e[%sm", $this->textColor);
+		if ($this->textColor !== '39')
+			$modes .= sprintf( "\e[%sm", $this->textColor );
 
-		if($this->backgroundColor !== '49')
-			$modes .= sprintf("\e[%sm", $this->backgroundColor);
+		if ($this->backgroundColor !== '49')
+			$modes .= sprintf( "\e[%sm", $this->backgroundColor );
 
-		return sprintf("%s%s\e[0m", $modes, $this->text);
+		return sprintf( "%s%s\e[0m", $modes, $this->text );
 	}
 
 
