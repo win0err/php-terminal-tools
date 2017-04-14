@@ -225,5 +225,5 @@ class TrueColor implements Color {
 
 		return sprintf( "48;2;%s;%s;%s", $this->red, $this->green, $this->blue );
 	}
-	
+
 }
